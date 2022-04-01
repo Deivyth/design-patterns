@@ -3,16 +3,20 @@ package com.kreitek.pets;
 import com.kreitek.pets.controllers.CatController;
 import com.kreitek.pets.controllers.ControllerFactory;
 import com.kreitek.pets.controllers.DogController;
+import com.kreitek.pets.domain.Logger;
+
 import java.util.Scanner;
 
 public class PetApp {
 
     // TODO Logger declaration
+    Logger logger = new Logger();
 
     public static void main (String[] args) {
         ControllerFactory controllerFactory = new ControllerFactory();
         boolean end = false;
         System.out.println("Pet app has been initiated"); // TODO Logger
+        System.out.println("Logger");
         while (!end) {
             String command = waitForNewCommand();
             String[] commandArgs = command.split(":");
@@ -59,6 +63,7 @@ public class PetApp {
             }
         }
         System.out.println("Pet app has been ended"); // TODO Logger
+        System.out.println("Logger");
     }
 
     private static String getGetParam(String[] commandArgs) throws BadCommandException {
