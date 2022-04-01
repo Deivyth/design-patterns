@@ -1,13 +1,24 @@
 package com.kreitek.pets.domain;
 
-import java.util.List;
 
 public class Logger {
 
-    private int count = 0;
+    private static volatile Logger instance = null;
+    public int counter = 0;
 
     public void debug(String command){
-        count++;
-        System.out.println("[debug]["+count+"] - "+command);
+        counter++;
+        System.out.println("[debug]["+counter+"] - "+command);
+    }
+
+    public static Logger getInstance() {
+        if (instance == null) {
+            synchronized(Logger.class) {
+                if (instance == null) {
+                    instance = new Logger();
+                }
+            }
+        }
+        return instance;
     }
 }
